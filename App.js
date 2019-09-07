@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
 import AppNavigator from './navigation/AppNavigator';
 
 export default function App(props) {
@@ -24,9 +25,9 @@ export default function App(props) {
   } else {
     return (
       <View style={styles.container}>
-        <LoginScreen/>
+        <RegisterScreen/>
       </View>
-    );    
+    );
   }
   // } else if (isAuthorized) {
   //   return (
