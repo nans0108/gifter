@@ -4,14 +4,14 @@ import Colors from '../constants/Colors';
 import { Button } from 'react-native-elements';
 import { LogoText, GifterInput } from '../components';
 
-export default function LoginScreen() {
+export default function RegisterScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.logoPosition}>
         <LogoText/>
       </View>
       <View style={styles.header}>
-        <Text style={styles.text}>Login to application</Text>
+        <Text style={styles.text}>Register to application</Text>
       </View>
       <View style={styles.inputPosition}>
         <GifterInput
@@ -30,18 +30,27 @@ export default function LoginScreen() {
           textContentType="oneTimeCode"
         />
       </View>
+      <View style={styles.inputPosition}>
+        <GifterInput
+          placeholder="confirm password"
+          secureTextEntry
+          iconName="lock"
+          iconSize={22}
+          textContentType="oneTimeCode"
+        />
+      </View>
       <View style={styles.buttonPosition}>
         <Button
           onPress={() => {}}
-          title="Login"
+          title="Register"
           buttonStyle={{
             backgroundColor: Colors.gifterBlue,
           }}
         />
       </View>
-      <TouchableOpacity style={styles.registerInfo} onPress={() => {}}>
-        <Text style={styles.registerText}>
-          Register
+      <TouchableOpacity style={styles.loginInfo} onPress={() => {}}>
+        <Text style={styles.loginText}>
+          Login
         </Text>
       </TouchableOpacity>
     </View>
@@ -71,16 +80,14 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   buttonPosition: {
-    flex: 0.1,
+    flex: 0.15,
     marginTop: 40,
   },
-  registerInfo: {
-    flex: 0.1,
-    marginBottom: 40,
-    marginTop: 20,
+  loginInfo: {
+    marginTop: 10,
     alignItems: 'center',
   },
-  registerText: {
+  loginText: {
     fontSize: 14,
     fontWeight: 'bold',
     color: Colors.gifterLightGrey,
