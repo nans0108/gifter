@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native';
 import { Button } from 'react-native-elements';
+import Colors from '../constants/Colors';
 
 import { LogoText } from '../components';
 
@@ -44,20 +45,20 @@ HomeScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.gifterWhite,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
   },
   text: {
     fontSize: 36,
-    color: '#99ccff',
+    color: Colors.gifterBlue,
     fontFamily: 'vinc-hand',
     justifyContent: 'flex-end',
   },
   textSmaller: {
     fontSize: 20,
-    color: '#ff99cc',
+    color: Colors.gifterPink,
     marginTop: 10,
     justifyContent: 'flex-start',
   },
