@@ -27,7 +27,7 @@ export default function HomeScreen(props) {
             onPress={() => props.setIsAuthorized(true)}
             title="Start"
             buttonStyle={{
-              backgroundColor: '#99ccff',
+              backgroundColor: Colors.gifterBlue,
             }}
           />
         </View>

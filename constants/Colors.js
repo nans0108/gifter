@@ -1,12 +1,16 @@
 const gifterWhite = '#fff';
 const gifterPink = '#ff99cc';
 const gifterBlue = '#99ccff';
+const gifterLightGrey = '#ccc';
+const gifterDarkGrey = '#313030';
 
 export default {
   gifterWhite,
   gifterPink,
   gifterBlue,
-  tabIconDefault: '#ccc',
+  gifterLightGrey,
+  gifterDarkGrey,
+  tabIconDefault: gifterLightGrey,
   tabIconSelected: gifterPink,
   tabBar: '#fefefe',
   errorBackground: 'red',
@@ -15,4 +19,5 @@ export default {
   warningText: '#666804',
   noticeBackground: gifterBlue,
   noticeText: gifterWhite,
+  loginInputsIcons: '#ccc',
 };
