@@ -1,13 +1,14 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import Colors from '../constants/Colors';
 
 export default function LogoText() {
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 86, fontWeight: 'bold', fontFamily: 'vinc-hand', color: '#ff99cc' }}>
+      <Text style={{ fontSize: 86, fontWeight: 'bold', fontFamily: 'vinc-hand', color: Colors.gifterPink }}>
         G
       </Text>
-      <Text style={{ fontSize: 82, fontWeight: 'bold', fontFamily: 'vinc-hand', color: '#99ccff' }}>
+      <Text style={{ fontSize: 82, fontWeight: 'bold', fontFamily: 'vinc-hand', color: Colors.gifterBlue }}>
         ifter
       </Text>
     </View>

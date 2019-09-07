@@ -1,24 +1,26 @@
 import React from 'react';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import Colors from '../constants/Colors';
 
-export default function LinksScreen() {
+export default function FriendsListScreen() {
   return (
     <ScrollView style={styles.container}>
       <View>
-        <Text> Second view </Text>
+        <Text> Friends </Text>
       </View>
     </ScrollView>
   );
 }
 
-LinksScreen.navigationOptions = {
-  title: 'Second view',
+FriendsListScreen.navigationOptions = {
+  title: 'Friends',
+  headerTintColor: Colors.gifterBlue
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.gifterWhite,
   },
 });

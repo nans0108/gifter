@@ -1,14 +1,18 @@
-const tintColor = '#2f95dc';
+const gifterWhite = '#fff';
+const gifterPink = '#ff99cc';
+const gifterBlue = '#99ccff';
 
 export default {
-  tintColor,
+  gifterWhite,
+  gifterPink,
+  gifterBlue,
   tabIconDefault: '#ccc',
-  tabIconSelected: tintColor,
+  tabIconSelected: gifterPink,
   tabBar: '#fefefe',
   errorBackground: 'red',
-  errorText: '#fff',
+  errorText: gifterWhite,
   warningBackground: '#EAEB5E',
   warningText: '#666804',
-  noticeBackground: tintColor,
-  noticeText: '#fff',
+  noticeBackground: gifterBlue,
+  noticeText: gifterWhite,
 };

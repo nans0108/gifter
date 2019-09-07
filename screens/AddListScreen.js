@@ -1,24 +1,26 @@
 import React from 'react';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import Colors from '../constants/Colors';
 
-export default function ListScreen() {
+export default function AddListScreen() {
   return (
     <ScrollView style={styles.container}>
       <View>
-        <Text> First view </Text>
+        <Text> Add List </Text>
       </View>
     </ScrollView>
   );
 }
 
-ListScreen.navigationOptions = {
-  title: 'First view',
+AddListScreen.navigationOptions = {
+  title: 'Add List',
+  headerTintColor: Colors.gifterBlue
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.gifterWhite,
   },
 });
