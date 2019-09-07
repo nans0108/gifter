@@ -1,9 +1,8 @@
 import React from 'react';
 import { ScrollView, View, Text, StyleSheet, Platform, TouchableOpacity } from 'react-native';
 import Colors from '../constants/Colors';
-import { Button, Input } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { LogoText } from '../components';
+import { Button } from 'react-native-elements';
+import { LogoText, GifterInput } from '../components';
 
 export default function LoginScreen() {
   return (
@@ -15,51 +14,19 @@ export default function LoginScreen() {
         <Text style={styles.text}>Login to application</Text>
       </View>
       <View style={styles.inputPosition}>
-        <Input
+        <GifterInput
           placeholder="email"
           keyboardType="email-address"
-          selectionColor={Colors.gifterDarkGrey}
-          inputStyle={{
-            color: Colors.gifterDarkGrey,
-          }}
-          inputContainerStyle={{
-            borderBottomColor: Colors.gifterLightGrey,
-          }}
-          leftIconContainerStyle={{
-            marginRight: 5,
-            marginLeft: 0,
-          }}
-          leftIcon={
-            <Icon
-              name="envelope"
-              size={20}
-              color={Colors.loginInputsIcons}
-            />
-          }
+          iconName="envelope"
+          iconSize={20}
         />
       </View>
       <View style={styles.inputPosition}>
-        <Input
+        <GifterInput
           placeholder="password"
           secureTextEntry
-          selectionColor={Colors.gifterDarkGrey}
-          inputStyle={{
-            color: Colors.gifterDarkGrey,
-          }}
-          inputContainerStyle={{
-            borderBottomColor: Colors.gifterLightGrey,
-          }}
-          leftIconContainerStyle={{
-            marginRight: 5,
-            marginLeft: 0,
-          }}
-          leftIcon={
-            <Icon
-              name="lock"
-              size={22}
-              color={Colors.loginInputsIcons}
-            />
-          }
+          iconName="lock"
+          iconSize={22}
         />
       </View>
       <View style={styles.buttonPosition}>
