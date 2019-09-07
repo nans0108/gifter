@@ -1,18 +1,18 @@
 import React from 'react';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
 
-export default function LinksScreen() {
+export default function ChooseGiftScreen() {
   return (
     <ScrollView style={styles.container}>
       <View>
-        <Text> Second view </Text>
+        <Text> ChooseGift </Text>
       </View>
     </ScrollView>
   );
 }
 
-LinksScreen.navigationOptions = {
-  title: 'Second view',
+ChooseGiftScreen.navigationOptions = {
+  title: 'Choose Gift',
 };
 
 const styles = StyleSheet.create({

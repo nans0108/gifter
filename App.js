@@ -10,7 +10,7 @@ import AppNavigator from './navigation/AppNavigator';
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
-  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [isAuthorized, setIsAuthorized] = useState(true);
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (

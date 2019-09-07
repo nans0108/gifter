@@ -1,18 +1,18 @@
 import React from 'react';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
 
-export default function ListScreen() {
+export default function AddListScreen() {
   return (
     <ScrollView style={styles.container}>
       <View>
-        <Text> First view </Text>
+        <Text> Add List </Text>
       </View>
     </ScrollView>
   );
 }
 
-ListScreen.navigationOptions = {
-  title: 'First view',
+AddListScreen.navigationOptions = {
+  title: 'Add List',
 };
 
 const styles = StyleSheet.create({
