@@ -1,12 +1,18 @@
 import React from 'react';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import Colors from '../constants/Colors';
+import { GifterInput } from '../components';
 
 export default function AddListScreen() {
   return (
     <ScrollView style={styles.container}>
-      <View>
-        <Text> Add List </Text>
+      <View style={styles.header}>
+        <Text style={styles.text}> Add new gifts list </Text>
+      </View>
+      <View style={styles.inputPosition}>
+        <GifterInput
+          label="list name"
+        />
       </View>
     </ScrollView>
   );
@@ -20,7 +26,18 @@ AddListScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
+    padding: 20,
     backgroundColor: Colors.gifterWhite,
+  },
+  header: {
+    flex: 0.3,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+  text: {
+    fontSize: 36,
+    color: Colors.gifterPink,
+    fontFamily: 'vinc-hand',
+    justifyContent: 'flex-end',
   },
 });
