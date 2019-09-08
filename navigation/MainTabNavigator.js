@@ -5,7 +5,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import Colors from '../constants/Colors';
 import { TabBarIcon } from '../components';
 import HomeScreen from '../screens/HomeScreen';
-import MyListsScreen from '../screens/MyListsScreen';
+import MyListsScreen from '../screens/MyListsScreen/MyListsScreen';
 import AddListScreen from '../screens/AddListScreen';
 import FriendsListScreen from '../screens/FriendsListScreen';
 import ChooseGiftScreen from '../screens/ChooseGiftScreen';
@@ -87,9 +87,8 @@ ChooseGiftStack.navigationOptions = {
 ChooseGiftStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
-  AddListStack,
-
   MyListsStack,
+  AddListStack,
   FriendsStack,
   ChooseGiftStack,
 });
