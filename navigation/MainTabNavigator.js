@@ -7,7 +7,7 @@ import { TabBarIcon } from '../components';
 import HomeScreen from '../screens/HomeScreen';
 import MyListsScreen from '../screens/MyListsScreen/MyListsScreen';
 import AddListScreen from '../screens/AddListScreen';
-import FriendsListScreen from '../screens/FriendsListScreen';
+import FriendsListScreen from '../screens/FriendsListScreen/FriendsListScreen';
 import ChooseGiftScreen from '../screens/ChooseGiftScreen';
 
 const config = Platform.select({
@@ -87,9 +87,10 @@ ChooseGiftStack.navigationOptions = {
 ChooseGiftStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
+  FriendsStack,
   MyListsStack,
   AddListStack,
-  FriendsStack,
+
   ChooseGiftStack,
 });
 
