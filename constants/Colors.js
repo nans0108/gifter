@@ -3,6 +3,8 @@ const gifterPink = '#ff99cc';
 const gifterBlue = '#99ccff';
 const gifterLightGrey = '#ccc';
 const gifterDarkGrey = '#313030';
+const gifterRed = '#d93267';
+const gifterGreen = '#21ad84';
 
 export default {
   gifterWhite,
@@ -10,6 +12,8 @@ export default {
   gifterBlue,
   gifterLightGrey,
   gifterDarkGrey,
+  gifterRed,
+  gifterGreen,
   tabIconDefault: gifterLightGrey,
   tabIconSelected: gifterPink,
   tabBar: '#fefefe',
