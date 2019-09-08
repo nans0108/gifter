@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import Colors from '../constants/Colors';
-import { GifterInput } from '../components';
+import { GifterInput, GifterDatePicker } from '../components';
 
 export default function AddListScreen() {
   return (
@@ -12,6 +12,11 @@ export default function AddListScreen() {
       <View style={styles.inputPosition}>
         <GifterInput
           label="list name"
+        />
+      </View>
+      <View style={styles.datePickerContainer}>
+        <GifterDatePicker
+          label="choose date"
         />
       </View>
     </ScrollView>
@@ -40,4 +45,7 @@ const styles = StyleSheet.create({
     fontFamily: 'vinc-hand',
     justifyContent: 'flex-end',
   },
+  datePickerContainer: {
+    justifyContent: 'center',
+  }
 });
