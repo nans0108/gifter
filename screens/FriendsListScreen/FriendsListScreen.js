@@ -2,33 +2,50 @@ import React, { useState } from 'react';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import Colors from '../../constants/Colors';
 import SingleFriend from './SingleFriend';
+import InviteFriendScreen from './InviteFriendScreen';
+import { Button } from 'react-native-elements';
 
 export default function FriendsListScreen() {
   const [activeFriendId, setActiveFriendId] = useState(null);
+  const [isInviteFriendScreenActive, setIsActiveInviteFriendView] = useState(false);
 
   handleSetActiveListId = (friendId) => {
     activeFriendId !== friendId
       ? setActiveFriendId(friendId)
       : setActiveFriendId(null);
   }
+
+  handelInviteFriend = (isActive) => setIsActiveInviteFriendView(isActive);
+
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.text}>My friends</Text>
-      </View>
-      <ScrollView style={styles.scrollContainer}>
-      {
-        friendsList.map((friend, index) =>
-          <SingleFriend
-            key={index}
-            friend={friend}
-            setActiveFriendId={handleSetActiveListId}
-            activeFriendId={activeFriendId}
+    isInviteFriendScreenActive
+      ? <InviteFriendScreen handelInviteFriend={handelInviteFriend}/>
+      : <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.text}>My friends</Text>
+        </View>
+        <ScrollView style={styles.scrollContainer}>
+        {
+          friendsList.map((friend, index) =>
+            <SingleFriend
+              key={index}
+              friend={friend}
+              setActiveFriendId={handleSetActiveListId}
+              activeFriendId={activeFriendId}
+            />
+          )
+        }
+        </ScrollView>
+        <View style={styles.buttonPosition}>
+          <Button
+            onPress={() => handelInviteFriend(true)}
+            title="Invite friend"
+            buttonStyle={{
+              backgroundColor: Colors.gifterPink,
+            }}
           />
-        )
-      }
-      </ScrollView>
-    </View>
+        </View>
+      </View>
   );
 }
 
@@ -56,6 +73,9 @@ const styles = StyleSheet.create({
     color: Colors.gifterPink,
     fontFamily: 'vinc-hand',
     justifyContent: 'flex-end',
+  },
+  buttonPosition: {
+    marginTop: 40,
   },
 });
 
