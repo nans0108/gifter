@@ -13,11 +13,29 @@ export default function ChooseGiftScreen() {
       : setActiveListId(null);
   }
 
+  getActiveList = () => {
+    return (
+      lists.find(list => list.id === activeListId)
+    )
+  }
+
+  getOwnerOfActiveList = () => {
+    const ownerId = getActiveList().ownerId;
+    return (
+      friends.find(friend => friend.id === ownerId)
+
+    )
+  }
+
   return (
     <View style={styles.container}>
       {
         activeListId
-          ? <SingleListScreen/>
+          ? <SingleListScreen
+            list={getActiveList()}
+            owner={getOwnerOfActiveList()}
+            setActiveListId={handleSetActiveListId}
+          />
           : <FriendsListsScreen
             lists={lists}
             friends={friends}

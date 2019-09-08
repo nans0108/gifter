@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import Colors from '../../constants/Colors';
+import { Button } from 'react-native-elements';
 
-export default function SingleListScreen() {
+export default function SingleListScreen(props) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -13,8 +14,8 @@ export default function SingleListScreen() {
       </ScrollView>
       <View style={styles.buttonPosition}>
         <Button
-          onPress={() => handleInviteFriend(true)}
-          title="Invite friend"
+          onPress={() => props.setActiveListId(null)}
+          title="Back"
           buttonStyle={{
             backgroundColor: Colors.gifterPink,
           }}
