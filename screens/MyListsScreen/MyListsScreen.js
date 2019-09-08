@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import Colors from '../../constants/Colors';
 import SingleList from './SingleList';
 
 export default function MyListsScreen() {
+  const [activeListId, setActiveListId] = useState(null);
+
+  handleSetActiveListId = (listId) => {
+    activeListId !== listId
+      ? setActiveListId(listId)
+      : setActiveListId(null);
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -12,7 +20,12 @@ export default function MyListsScreen() {
       <ScrollView style={styles.scrollContainer}>
         {
           myLists.map((list, index) =>
-            <SingleList key={index} list={list}/>
+            <SingleList
+              key={index}
+              list={list}
+              setActiveListId={handleSetActiveListId}
+              activeListId={activeListId}
+            />
           )
         }
       </ScrollView>

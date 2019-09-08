@@ -10,16 +10,19 @@ export default function SingleItem(props) {
         <Text style={[styles.itemText, styles.itemName]}>
           Name: {props.item.name}
         </Text>
-        <TouchableOpacity
-          style={styles.deleteItem}
-          onPress={() => console.log('delete item with id', props.item.id)}
-        >
-          <Ionicons
-            name={Platform.OS === 'ios' ? 'ios-trash' : 'md-trash'}
-            size={22}
-            color={Colors.gifterLightGrey}
-          />
-        </TouchableOpacity>
+        {
+          props.isPossibleToDeleteItem &&
+          <TouchableOpacity
+            style={styles.deleteItem}
+            onPress={() => console.log('delete item with id', props.item.id)}
+          >
+            <Ionicons
+              name={Platform.OS === 'ios' ? 'ios-trash' : 'md-trash'}
+              size={22}
+              color={Colors.gifterLightGrey}
+            />
+          </TouchableOpacity>
+        }
       </View>
       <Text style={styles.itemText}>
         <Text style={styles.itemTextLabel}>Description: </Text>{props.item.description}

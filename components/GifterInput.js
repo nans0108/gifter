@@ -17,13 +17,13 @@ export default function GifterInput(props) {
 
   handleFocus = () => {
     setFocus(true);
-  }
+  };
 
   handleBlur = () => {
     if (!textInputValue) {
       setFocus(false)
     }
-  }
+  };
 
   onChange = (text) => {
     setTextInputValue(text)

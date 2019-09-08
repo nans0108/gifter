@@ -1,17 +1,26 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import Colors from '../../constants/Colors';
 import SingleItem from './SingleItem';
+import AddItem from './AddItem';
 
 export default function SingleList(props) {
+  getListElementColor = () => {
+    return props.activeListId === props.list.id
+      ? Colors.gifterPink
+      : props.list.isActive
+        ? Colors.gifterBlue
+        : Colors.gifterLightGrey;
+  }
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={[
-          { backgroundColor: props.list.isActive ? Colors.gifterBlue : Colors.gifterLightGrey },
+          { backgroundColor: getListElementColor() },
           styles.listElement
         ]}
-        onPress={() => console.log('show list with id', props.list.id)}
+        onPress={() => props.setActiveListId(props.list.id)}
       >
         <View style={styles.listElementHeader}>
           <Text style={[styles.listText, styles.listName]}>
@@ -28,9 +37,15 @@ export default function SingleList(props) {
         </View>
       </TouchableOpacity>
       {
+        props.activeListId === props.list.id &&
         props.list.items.map((item, index) =>
-          <SingleItem key={index} item={item}/>
+          <SingleItem key={index} item={item} isPossibleToDeleteItem={props.list.isActive}/>
         )
+      }
+      {
+        props.list.isActive &&
+        props.activeListId === props.list.id &&
+        <AddItem/>
       }
     </View>
   )
@@ -44,6 +59,17 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     marginTop: 10,
     padding: 10,
+    ...Platform.select({
+        ios: {
+          shadowColor: 'black',
+          shadowOffset: { width: 0, height: -3 },
+          shadowOpacity: 0.1,
+          shadowRadius: 3,
+        },
+        android: {
+          elevation: 20,
+        },
+      }),
   },
   listElementHeader: {
     flexDirection: 'row',
