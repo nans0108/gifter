@@ -87,10 +87,10 @@ ChooseGiftStack.navigationOptions = {
 ChooseGiftStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
-  ChooseGiftStack,
   MyListsStack,
   AddListStack,
   FriendsStack,
+  ChooseGiftStack,
 });
 
 tabNavigator.path = '';

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import Colors from '../../constants/Colors';
 
-export default function SingleList(props) {
+export default function SingleListTab(props) {
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -13,7 +13,7 @@ export default function SingleList(props) {
           },
           styles.listElement
         ]}
-        onPress={() => props.setActiveListId(props.list.id)}
+        onPress={() => props.setActiveListId && props.setActiveListId(props.list.id)}
       >
         <View style={styles.listElementHeader}>
           <Text style={[styles.listText, styles.listName]}>
