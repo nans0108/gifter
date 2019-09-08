@@ -22,27 +22,27 @@ export default function App(props) {
         onFinish={() => handleFinishLoading(setLoadingComplete)}
       />
     );
-  } else {
-    return (
-      <View style={styles.container}>
-        <RegisterScreen/>
-      </View>
-    );
-  }
-  // } else if (isAuthorized) {
-  //   return (
-  //     <View style={styles.container}>
-  //       {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-  //       <AppNavigator />
-  //     </View>
-  //   );
   // } else {
   //   return (
   //     <View style={styles.container}>
-  //       <HomeScreen setIsAuthorized={setIsAuthorized}/>
+  //       <LoginScreen/>
   //     </View>
-  //   )
+  //   );
   // }
+  } else if (isAuthorized) {
+    return (
+      <View style={styles.container}>
+        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+        <AppNavigator />
+      </View>
+    );
+  } else {
+    return (
+      <View style={styles.container}>
+        <HomeScreen setIsAuthorized={setIsAuthorized}/>
+      </View>
+    )
+  }
 }
 
 async function loadResourcesAsync() {

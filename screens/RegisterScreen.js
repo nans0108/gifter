@@ -15,7 +15,7 @@ export default function RegisterScreen() {
       </View>
       <View style={styles.inputPosition}>
         <GifterInput
-          placeholder="email"
+          label="email"
           keyboardType="email-address"
           iconName="envelope"
           iconSize={20}
@@ -23,7 +23,7 @@ export default function RegisterScreen() {
       </View>
       <View style={styles.inputPosition}>
         <GifterInput
-          placeholder="password"
+          label="password"
           secureTextEntry
           iconName="lock"
           iconSize={22}
@@ -32,7 +32,7 @@ export default function RegisterScreen() {
       </View>
       <View style={styles.inputPosition}>
         <GifterInput
-          placeholder="confirm password"
+          label="confirm password"
           secureTextEntry
           iconName="lock"
           iconSize={22}
