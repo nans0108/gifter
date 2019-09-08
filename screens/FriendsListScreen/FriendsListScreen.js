@@ -15,11 +15,11 @@ export default function FriendsListScreen() {
       : setActiveFriendId(null);
   }
 
-  handelInviteFriend = (isActive) => setIsActiveInviteFriendView(isActive);
+  handleInviteFriend = (isActive) => setIsActiveInviteFriendView(isActive);
 
   return (
     isInviteFriendScreenActive
-      ? <InviteFriendScreen handelInviteFriend={handelInviteFriend}/>
+      ? <InviteFriendScreen handleInviteFriend={handleInviteFriend}/>
       : <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.text}>My friends</Text>
@@ -38,7 +38,7 @@ export default function FriendsListScreen() {
         </ScrollView>
         <View style={styles.buttonPosition}>
           <Button
-            onPress={() => handelInviteFriend(true)}
+            onPress={() => handleInviteFriend(true)}
             title="Invite friend"
             buttonStyle={{
               backgroundColor: Colors.gifterPink,

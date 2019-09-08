@@ -17,7 +17,7 @@ export default function InviteFriendScreen(props) {
       </View>
       <View style={styles.buttonPosition}>
         <Button
-          onPress={() => props.handelInviteFriend(false)}
+          onPress={() => props.handleInviteFriend(false)}
           title="Add"
           buttonStyle={{
             backgroundColor: Colors.gifterBlue,
@@ -26,7 +26,7 @@ export default function InviteFriendScreen(props) {
       </View>
       <View style={styles.buttonPosition}>
         <Button
-          onPress={() => props.handelInviteFriend(false)}
+          onPress={() => props.handleInviteFriend(false)}
           title="Cancel"
           buttonStyle={{
             backgroundColor: Colors.gifterPink,
