@@ -11,7 +11,7 @@ export default function SingleList(props) {
           { backgroundColor: props.list.isActive ? Colors.gifterBlue : Colors.gifterLightGrey },
           styles.listElement
         ]}
-        onPress={() => console.log('props.list.items', props.list)}
+        onPress={() => console.log('show list with id', props.list.id)}
       >
         <View style={styles.listElementHeader}>
           <Text style={[styles.listText, styles.listName]}>
