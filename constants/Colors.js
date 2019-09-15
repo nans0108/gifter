@@ -1,14 +1,27 @@
-const tintColor = '#2f95dc';
+const gifterWhite = '#fff';
+const gifterPink = '#ff99cc';
+const gifterBlue = '#99ccff';
+const gifterLightGrey = '#ccc';
+const gifterDarkGrey = '#313030';
+const gifterRed = '#d93267';
+const gifterGreen = '#21ad84';
 
 export default {
-  tintColor,
-  tabIconDefault: '#ccc',
-  tabIconSelected: tintColor,
+  gifterWhite,
+  gifterPink,
+  gifterBlue,
+  gifterLightGrey,
+  gifterDarkGrey,
+  gifterRed,
+  gifterGreen,
+  tabIconDefault: gifterLightGrey,
+  tabIconSelected: gifterPink,
   tabBar: '#fefefe',
   errorBackground: 'red',
-  errorText: '#fff',
+  errorText: gifterWhite,
   warningBackground: '#EAEB5E',
   warningText: '#666804',
-  noticeBackground: tintColor,
-  noticeText: '#fff',
+  noticeBackground: gifterBlue,
+  noticeText: gifterWhite,
+  loginInputsIcons: '#ccc',
 };

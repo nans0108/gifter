@@ -2,75 +2,95 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
-import TabBarIcon from '../components/TabBarIcon';
+import Colors from '../constants/Colors';
+import { TabBarIcon } from '../components';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import MyListsScreen from '../screens/MyListsScreen/MyListsScreen';
+import AddListScreen from '../screens/AddListScreen';
+import FriendsListScreen from '../screens/FriendsListScreen/FriendsListScreen';
+import ChooseGiftScreen from '../screens/ChooseGiftScreen/ChooseGiftScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
 });
 
-const HomeStack = createStackNavigator(
+const MyListsStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    MyLists: MyListsScreen,
   },
   config
 );
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+MyListsStack.navigationOptions = {
+  tabBarLabel: 'My Lists',
+  tabBarOptions: { activeTintColor: Colors.gifterPink },
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
+      name={Platform.OS === 'ios' ? 'ios-list' : 'md-list'}
     />
   ),
 };
 
-HomeStack.path = '';
+MyListsStack.path = '';
 
-const LinksStack = createStackNavigator(
+AddListStack = createStackNavigator(
   {
-    Links: LinksScreen,
+    AddList: AddListScreen,
   },
   config
 );
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+AddListStack.navigationOptions = {
+  tabBarLabel: 'Add List',
+  tabBarOptions: { activeTintColor: Colors.gifterPink },
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-add-circle' : 'md-add-circle'} />
   ),
 };
 
-LinksStack.path = '';
+AddListStack.path = '';
 
-const SettingsStack = createStackNavigator(
+const FriendsStack = createStackNavigator(
   {
-    Settings: SettingsScreen,
+    Friends: FriendsListScreen,
   },
   config
 );
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+FriendsStack.navigationOptions = {
+  tabBarLabel: 'Friends',
+  tabBarOptions: { activeTintColor: Colors.gifterPink },
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-people' : 'md-people'} />
   ),
 };
 
-SettingsStack.path = '';
+FriendsStack.path = '';
+
+const ChooseGiftStack = createStackNavigator(
+  {
+    ChooseGift: ChooseGiftScreen,
+  },
+  config
+);
+
+ChooseGiftStack.navigationOptions = {
+  tabBarLabel: 'Choose Gift',
+  tabBarOptions: { activeTintColor: Colors.gifterPink },
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-gift' : 'md-gift'} />
+  ),
+};
+
+ChooseGiftStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
+  MyListsStack,
+  AddListStack,
+  FriendsStack,
+  ChooseGiftStack,
 });
 
 tabNavigator.path = '';

@@ -3,46 +3,37 @@ import React from 'react';
 import {
   Image,
   Platform,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import { Button } from 'react-native-elements';
+import Colors from '../constants/Colors';
 
-// import utils text - can use it to make utils button, input and so one
-import { MonoText } from '../components/StyledText';
+import { LogoText } from '../components';
 
-export default function HomeScreen() {
+export default function HomeScreen(props) {
   return (
     <View style={styles.container}>
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
+        <Text style={styles.text}>
+          Welcome in application
+        </Text>
+        <View style={styles.logoPosition}>
+          <LogoText/>
+        </View>
+        <View style={styles.buttonPosition}>
+          <Button
+            onPress={() => props.setIsAuthorized(true)}
+            title="Start"
+            buttonStyle={{
+              backgroundColor: Colors.gifterBlue,
+            }}
           />
         </View>
-
-        <View
-          style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-          <MonoText>GIFTER</MonoText>
-        </View>
-
-        <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={() => {}} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>
-              START
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+        <Text style={[styles.text, styles.textSmaller]}>
+          Please press button to begin
+        </Text>
     </View>
   );
 }
@@ -54,64 +45,28 @@ HomeScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-  },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
+    backgroundColor: Colors.gifterWhite,
     alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  text: {
+    fontSize: 36,
+    color: Colors.gifterBlue,
+    fontFamily: 'vinc-hand',
+    justifyContent: 'flex-end',
+  },
+  textSmaller: {
+    fontSize: 20,
+    color: Colors.gifterPink,
     marginTop: 10,
-    marginBottom: 20,
+    justifyContent: 'flex-start',
   },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
+  logoPosition: {
+    flex: 0.4,
   },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
+  buttonPosition: {
+    flex: 0.4,
+    justifyContent: 'flex-end',
   },
 });
-
-
-
-// Style for differnent systems
-// tabBarInfoContainer: {
-//   position: 'absolute',
-//   bottom: 0,
-//   left: 0,
-//   right: 0,
-//   ...Platform.select({
-//     ios: {
-//       shadowColor: 'black',
-//       shadowOffset: { width: 0, height: -3 },
-//       shadowOpacity: 0.1,
-//       shadowRadius: 3,
-//     },
-//     android: {
-//       elevation: 20,
-//     },
-//   }),
-//   alignItems: 'center',
-//   backgroundColor: '#fbfbfb',
-//   paddingVertical: 20,
-// },
