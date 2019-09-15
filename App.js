@@ -33,7 +33,10 @@ export default function App(props) {
     } else if (!isAuthorized && isLoginPageActive) {
       return (
         <View style={styles.container}>
-          <LoginScreen/>
+          <LoginScreen
+            setIsAuthorized={setIsAuthorized}
+            setIsLoginPageActive={setIsLoginPageActive}
+          />
         </View>
       );
     } else if (isAuthorized) {
