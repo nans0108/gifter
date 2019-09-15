@@ -16,6 +16,8 @@ function GifterDatePicker(props, ref) {
     setDateValue(newDate);
   }
 
+  clear = () => setDateValue(new Date());
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
