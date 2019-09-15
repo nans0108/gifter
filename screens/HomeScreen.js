@@ -1,4 +1,6 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import {
   StyleSheet,
   Text,
@@ -6,10 +8,16 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import Colors from '../constants/Colors';
-
 import { LogoText } from '../components';
+import * as authorizationActions from '../actions/authorizationActions';
 
-export default function HomeScreen(props) {
+function HomeScreen(props) {
+  goToLoginPage = () => {
+    !!props.authorization.get('id')
+      ? props.setIsAuthorized(true)
+      : props.setIsLoginPageActive(true);
+  }
+
   return (
     <View style={styles.container}>
         <Text style={styles.text}>
@@ -20,7 +28,7 @@ export default function HomeScreen(props) {
         </View>
         <View style={styles.buttonPosition}>
           <Button
-            onPress={() => props.setIsAuthorized(true)}
+            onPress={goToLoginPage}
             title="Start"
             buttonStyle={{
               backgroundColor: Colors.gifterBlue,
@@ -37,6 +45,17 @@ export default function HomeScreen(props) {
 HomeScreen.navigationOptions = {
   header: null,
 };
+
+const mapStateToProps = (state: Object) => ({
+    authorization: state.authorization,
+});
+
+const mapDispachToProps = (dispatch) => bindActionCreators({
+  ...authorizationActions,
+}, dispatch);
+
+
+export default connect(mapStateToProps, mapDispachToProps)(HomeScreen);
 
 const styles = StyleSheet.create({
   container: {

@@ -1,7 +1,7 @@
 import Immutable from 'immutable'
-import users from '../testDatabase';
+import users from '../testDatabase/users.js';
 
-const authenticationReducer = (state: Immutable.Map = Immutable.Map(), action) => {
+const authorizationReducer = (state: Immutable.Map = Immutable.Map(), action) => {
   switch(action.type) {
     case 'LOGIN':
       const authenticatedUser: Object = users.find(user => user.email === actions.response.email)
@@ -11,4 +11,4 @@ const authenticationReducer = (state: Immutable.Map = Immutable.Map(), action) =
   }
 }
 
-export default authenticationReducer;
+export default authorizationReducer;
