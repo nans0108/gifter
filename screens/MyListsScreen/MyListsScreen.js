@@ -30,6 +30,7 @@ function MyListsScreen(props) {
                 setActiveListId={handleSetActiveListId}
                 activeListId={activeListId}
                 addElement={props.addElementToList}
+                removeElement={props.removeElementFromList}
               />
             )
             : <Text style={styles.emptyListText}>

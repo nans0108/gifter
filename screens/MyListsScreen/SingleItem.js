@@ -4,6 +4,10 @@ import Colors from '../../constants/Colors';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function SingleItem(props) {
+  removeElement = () => {
+    props.removeElement(props.item.get('id'), props.listId);
+  }
+
   return (
     <View style={styles.itemElement}>
       <View style={styles.header}>
@@ -14,7 +18,7 @@ export default function SingleItem(props) {
           props.isPossibleToDeleteItem &&
           <TouchableOpacity
             style={styles.deleteItem}
-            onPress={() => console.log('delete item with id', props.item.get('id'))}
+            onPress={removeElement}
           >
             <Ionicons
               name={Platform.OS === 'ios' ? 'ios-trash' : 'md-trash'}

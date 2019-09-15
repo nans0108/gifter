@@ -28,3 +28,18 @@ export function addElementToListRequest(element: Object, listId: number): Object
     listId: listId,
   };
 }
+
+export function removeElementFromList(elementId: number, listId: number): Function {
+  return (dispatch) => new Promise((resolve) => {
+    dispatch(removeElementFromListRequest(elementId, listId));
+    resolve();
+  });
+}
+
+export function removeElementFromListRequest(elementId: number, listId: number): Object {
+  return {
+    type: 'REMOVE_ELEMENT',
+    elementId: elementId,
+    listId: listId,
+  };
+}

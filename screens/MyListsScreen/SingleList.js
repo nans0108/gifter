@@ -40,7 +40,13 @@ export default function SingleList(props) {
       {
         props.activeListId === props.list.get('id') &&
         props.list.get('items').map((item, index) =>
-          <SingleItem key={index} item={item} isPossibleToDeleteItem={props.list.get('isActive')}/>
+          <SingleItem
+            key={index}
+            item={item}
+            isPossibleToDeleteItem={props.list.get('isActive')}
+            removeElement={props.removeElement}
+            listId={props.list.get('id')}
+          />
         )
       }
       {
