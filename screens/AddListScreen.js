@@ -15,6 +15,7 @@ function AddListScreen(props) {
   const listDescriptionRef = createRef(null);
 
   addList = () => {
+    setIsErrorVisible(false);
     !!listNameRef.current.getValue()
       ? props.addList({
         name: listNameRef.current.getValue(),
@@ -22,9 +23,8 @@ function AddListScreen(props) {
         dueDate: listDueDateRef.current.getValue(),
       })
       .then(() => {
-        props.navigation.navigate('MyLists');
-        setIsErrorVisible(false);
         clearInputs();
+        props.navigation.navigate('MyLists');
       })
       : setIsErrorVisible(true);
   }

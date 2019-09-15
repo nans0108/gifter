@@ -19,9 +19,9 @@ function LoginScreen(props) {
       password: passwordRef.current.getValue(),
     })
     .then(() => {
+      clearInputs();
       props.setIsAuthorized(true);
       props.setIsLoginPageActive(false);
-      clearInputs();
     });
     .catch(() => setIsErrorVisible(true));
   }
