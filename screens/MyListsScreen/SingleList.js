@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import Colors from '../../constants/Colors';
 import SingleItem from './SingleItem';
@@ -6,9 +7,9 @@ import AddItem from './AddItem';
 
 export default function SingleList(props) {
   getListElementColor = () => {
-    return props.activeListId === props.list.id
+    return props.activeListId === props.list.get('id')
       ? Colors.gifterPink
-      : props.list.isActive
+      : props.list.get('isActive')
         ? Colors.gifterBlue
         : Colors.gifterLightGrey;
   }
@@ -20,32 +21,41 @@ export default function SingleList(props) {
           { backgroundColor: getListElementColor() },
           styles.listElement
         ]}
-        onPress={() => props.setActiveListId(props.list.id)}
+        onPress={() => props.setActiveListId(props.list.get('id'))}
       >
         <View style={styles.listElementHeader}>
           <Text style={[styles.listText, styles.listName]}>
-            {props.list.name}
+            {props.list.get('name')}
           </Text>
           <Text style={[styles.listText, styles.listDate]}>
-            {props.list.dueDate}
+            {moment(props.list.get('dueDate')).format('DD.MM.YYYY')}
           </Text>
         </View>
         <View style={styles.listElementDescription}>
           <Text style={styles.listText}>
-            {props.list.description}
+            {props.list.get('description')}
           </Text>
         </View>
       </TouchableOpacity>
       {
-        props.activeListId === props.list.id &&
-        props.list.items.map((item, index) =>
-          <SingleItem key={index} item={item} isPossibleToDeleteItem={props.list.isActive}/>
+        props.activeListId === props.list.get('id') &&
+        props.list.get('items').map((item, index) =>
+          <SingleItem
+            key={index}
+            item={item}
+            isPossibleToDeleteItem={props.list.get('isActive')}
+            removeElement={props.removeElement}
+            listId={props.list.get('id')}
+          />
         )
       }
       {
-        props.list.isActive &&
-        props.activeListId === props.list.id &&
-        <AddItem/>
+        props.list.get('isActive') &&
+        props.activeListId === props.list.get('id') &&
+        <AddItem
+          addElement={props.addElement}
+          listId={props.list.get('id')}
+        />
       }
     </View>
   )

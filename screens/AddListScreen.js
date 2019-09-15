@@ -32,6 +32,7 @@ function AddListScreen(props) {
   clearInputs = () => {
     listNameRef.current.clear();
     listDescriptionRef.current.clear();
+    listDueDateRef.current.clear();
   }
 
   return (
@@ -49,6 +50,7 @@ function AddListScreen(props) {
         <GifterInput
           ref={listNameRef}
           label="list name"
+          defaultValue="New List"
         />
       </View>
       <View style={styles.datePickerContainer}>
@@ -61,6 +63,7 @@ function AddListScreen(props) {
         <GifterInput
           ref={listDescriptionRef}
           label="description"
+          defaultValue="New List description"
         />
       </View>
       <View style={styles.buttonPosition}>
@@ -88,7 +91,6 @@ const mapStateToProps = (state: Object) => ({
 const mapDispachToProps = (dispatch) => bindActionCreators({
   ...listActions,
 }, dispatch);
-
 
 export default connect(mapStateToProps, mapDispachToProps)(AddListScreen);
 
