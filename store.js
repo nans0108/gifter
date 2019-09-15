@@ -1,10 +1,13 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import listReducer from './reducers/listReducer';
 import createRequestMiddleware  from './middlewares/requestMiddleware';
 import thunk from 'redux-thunk';
 
+import listReducer from './reducers/listReducer';
+import authenticationReducer from './reducers/authenticationReducer';
+
 const rootReducer = combineReducers({
-  lists: listReducer
+  lists: listReducer,
+  authentication: authenticationReducer,
 });
 
 const configureStore = () => {

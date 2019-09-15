@@ -1,16 +1,11 @@
-const authenticationReducer = (state = [], action) => {
+import Immutable from 'immutable'
+import users from '../testDatabase';
+
+const authenticationReducer = (state: Immutable.Map = Immutable.Map(), action) => {
   switch(action.type) {
-    case ADD_LIST:
-      return state.push(
-        {
-          id: 1,
-          ownerId: 3,
-          name: action.payload.name,
-          description: action.payload.description,
-          dueDate: action.payload.dueDate,
-          isActive: true,
-          items: [],
-        });
+    case 'LOGIN':
+      const authenticatedUser: Object = users.find(user => user.email === actions.response.email)
+      return new Immutable.Map({authenticatedUser});
     default:
       return state;
   }
