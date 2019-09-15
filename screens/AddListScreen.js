@@ -16,7 +16,7 @@ function AddListScreen(props) {
       dueDate: '12.12.2019',
     })
   }
-  console.log('listReducer', props.lists);
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>

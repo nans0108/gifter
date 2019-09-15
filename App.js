@@ -19,7 +19,7 @@ export default function App(props) {
 
   const [isLoadingComplete, setLoadingComplete] = useState(false);
   const [isAuthorized, setIsAuthorized] = useState(false);
-
+  const [isLoginPageActive, setIsLoginPageActive] = useState(false);
 
   getView = () => {
     if (!isLoadingComplete && !props.skipLoadingScreen) {
@@ -30,13 +30,15 @@ export default function App(props) {
           onFinish={() => handleFinishLoading(setLoadingComplete)}
         />
       );
-    // } else {
-    //   return (
-    //     <View style={styles.container}>
-    //       <LoginScreen/>
-    //     </View>
-    //   );
-    // }
+    } else if (!isAuthorized && isLoginPageActive) {
+      return (
+        <View style={styles.container}>
+          <LoginScreen
+            setIsAuthorized={setIsAuthorized}
+            setIsLoginPageActive={setIsLoginPageActive}
+          />
+        </View>
+      );
     } else if (isAuthorized) {
       return (
         <View style={styles.container}>
@@ -47,7 +49,10 @@ export default function App(props) {
     } else {
       return (
         <View style={styles.container}>
-          <HomeScreen setIsAuthorized={setIsAuthorized}/>
+          <HomeScreen
+            setIsAuthorized={setIsAuthorized}
+            setIsLoginPageActive={setIsLoginPageActive}
+          />
         </View>
       )
     }

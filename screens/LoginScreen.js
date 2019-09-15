@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { createRef, useState } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { ScrollView, View, Text, StyleSheet, Platform, TouchableOpacity } from 'react-native';
 import Colors from '../constants/Colors';
 import { Button } from 'react-native-elements';
 import { LogoText, GifterInput } from '../components';
+import * as authorizationActions from '../actions/authorizationActions';
 
-export default function LoginScreen() {
+function LoginScreen(props) {
+  const [isErrorVisible, setIsErrorVisible] = useState(false);
+
+  const emailRef = createRef(null);
+  const passwordRef = createRef(null);
+
+  login = () => {
+    props.login({
+      email: emailRef.current.getValue(),
+      password: passwordRef.current.getValue(),
+    })
+    .then(() => {
+      props.setIsAuthorized(true);
+      props.setIsLoginPageActive(false);
+    })
+    .catch(() => setIsErrorVisible(true));
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.logoPosition}>
@@ -13,8 +33,15 @@ export default function LoginScreen() {
       <View style={styles.header}>
         <Text style={styles.text}>Login to application</Text>
       </View>
+      {
+        isErrorVisible &&
+        <View style={styles.errorMsg}>
+          <Text style={styles.errorText}>User with this email doesn't exist</Text>
+        </View>
+      }
       <View style={styles.inputPosition}>
         <GifterInput
+          ref={emailRef}
           label="email"
           keyboardType="email-address"
           iconName="envelope"
@@ -23,6 +50,7 @@ export default function LoginScreen() {
       </View>
       <View style={styles.inputPosition}>
         <GifterInput
+          ref={passwordRef}
           label="password"
           secureTextEntry
           iconName="lock"
@@ -32,21 +60,33 @@ export default function LoginScreen() {
       </View>
       <View style={styles.buttonPosition}>
         <Button
-          onPress={() => {}}
+          onPress={login}
           title="Login"
           buttonStyle={{
             backgroundColor: Colors.gifterBlue,
           }}
         />
       </View>
-      <TouchableOpacity style={styles.registerInfo} onPress={() => {}}>
+      <View style={styles.registerInfo}></View>
+      {/* <TouchableOpacity style={styles.registerInfo} onPress={() => {}}>
         <Text style={styles.registerText}>
           Register
         </Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 }
+
+const mapStateToProps = (state: Object) => ({
+    authorization: state.authorization,
+});
+
+const mapDispachToProps = (dispatch) => bindActionCreators({
+  ...authorizationActions,
+}, dispatch);
+
+
+export default connect(mapStateToProps, mapDispachToProps)(LoginScreen);
 
 const styles = StyleSheet.create({
   container: {
@@ -88,5 +128,16 @@ const styles = StyleSheet.create({
   logoPosition: {
     flex: 0.3,
     alignItems: 'center',
+  },
+  errorMsg: {
+    marginTop: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  errorText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: Colors.gifterRed,
   },
 });
