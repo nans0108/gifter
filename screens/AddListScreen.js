@@ -32,7 +32,6 @@ function AddListScreen(props) {
   clearInputs = () => {
     listNameRef.current.clear();
     listDescriptionRef.current.clear();
-    listDueDateRef.current.clear();
   }
 
   return (

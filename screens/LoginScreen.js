@@ -22,7 +22,7 @@ function LoginScreen(props) {
       clearInputs();
       props.setIsAuthorized(true);
       props.setIsLoginPageActive(false);
-    });
+    })
     .catch(() => setIsErrorVisible(true));
   }
 

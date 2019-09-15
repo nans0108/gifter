@@ -25,7 +25,7 @@ class GifterInput extends PureComponent {
 
   getValue = () => this.state.textInputValue;
 
-  clear = () => this.setState({textInputValue: ''})
+  clear = () => this.setState({textInputValue: '', isFocused: false})
 
   render(): React$Element<*> {
     return (
