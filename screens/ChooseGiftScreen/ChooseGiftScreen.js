@@ -23,7 +23,6 @@ export default function ChooseGiftScreen() {
     const ownerId = getActiveList().ownerId;
     return (
       friends.find(friend => friend.id === ownerId)
-
     )
   }
 
@@ -35,6 +34,7 @@ export default function ChooseGiftScreen() {
             list={getActiveList()}
             owner={getOwnerOfActiveList()}
             setActiveListId={handleSetActiveListId}
+            activeUserId={1}
           />
           : <FriendsListsScreen
             lists={lists}
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
 const lists = [
   {
     id: 1,
-    ownerId: 1,
+    ownerId: 2,
     name: 'List name',
     description: 'List description',
     dueDate: '12.09.2019',
@@ -82,24 +82,28 @@ const lists = [
         name: 'Item name',
         description: 'Item description',
         placeToBuy: 'Place to buy this item',
+        reservedById: 6,
       },
       {
         id: 2,
         name: 'Item name',
         description: 'Item description',
         placeToBuy: 'Place to buy this item',
+        reservedById: 3,
       },
       {
         id: 3,
         name: 'Item name',
         description: 'Item description',
         placeToBuy: 'Place to buy this item',
+        reservedById: null,
       },
       {
         id: 4,
         name: 'Item name',
         description: 'Item description',
         placeToBuy: 'Place to buy this item',
+        reservedById: 1,
       },
     ],
   },
@@ -125,12 +129,14 @@ const lists = [
         name: 'Item name',
         description: 'Item description',
         placeToBuy: 'Place to buy this item',
+        reservedById: null,
       },
       {
         id: 2,
         name: 'Item name',
         description: 'Item description',
         placeToBuy: 'Place to buy this item',
+        reservedById: 1,
       },
     ],
   },
@@ -147,12 +153,14 @@ const lists = [
         name: 'Item name',
         description: 'Item description',
         placeToBuy: 'Place to buy this item',
+        reservedById: 2,
       },
       {
         id: 2,
         name: 'Item name',
         description: 'Item description',
         placeToBuy: 'Place to buy this item',
+        reservedById: null,
       },
       {
         id: 3,
@@ -165,18 +173,21 @@ const lists = [
         name: 'Item name',
         description: 'Item description',
         placeToBuy: 'Place to buy this item',
+        reservedById: 1,
       },
       {
         id: 5,
         name: 'Item name',
         description: 'Item description',
         placeToBuy: '',
+        reservedById: 4,
       },
       {
         id: 6,
         name: 'Item name',
         description: 'Item description',
         placeToBuy: 'Place to buy this item',
+        reservedById: null,
       },
     ],
   }

@@ -22,6 +22,7 @@ export default function SingleListScreen(props) {
               <SingleItemTab
                 key={index}
                 item={item}
+                activeUserId={1}
               />
             )
             : <Text style={styles.emptyListText}>
@@ -51,11 +52,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
-    fontSize: 36,
+    fontSize: 30,
     color: Colors.gifterPink,
     fontFamily: 'vinc-hand',
     justifyContent: 'center',

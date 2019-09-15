@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import Colors from '../../constants/Colors';
 import { Ionicons } from '@expo/vector-icons';
+import { Button } from 'react-native-elements';
 
 export default function SingleItemTab(props) {
   return (
@@ -10,19 +11,6 @@ export default function SingleItemTab(props) {
         <Text style={[styles.itemText, styles.itemName]}>
           Name: {props.item.name}
         </Text>
-        {
-          props.isPossibleToDeleteItem &&
-          <TouchableOpacity
-            style={styles.deleteItem}
-            onPress={() => console.log('delete item with id', props.item.id)}
-          >
-            <Ionicons
-              name={Platform.OS === 'ios' ? 'ios-trash' : 'md-trash'}
-              size={22}
-              color={Colors.gifterLightGrey}
-            />
-          </TouchableOpacity>
-        }
       </View>
       <Text style={styles.itemText}>
         <Text style={styles.itemTextLabel}>Description: </Text>{props.item.description}
@@ -30,6 +18,34 @@ export default function SingleItemTab(props) {
       <Text style={styles.itemText}>
         <Text style={styles.itemTextLabel}>Place to buy: </Text>{props.item.placeToBuy}
       </Text>
+      <View style={styles.buttonPosition}>
+        {
+          props.item.reservedById === props.activeUserId &&
+          <Button
+            onPress={() => {}}
+            title="Cancel reservation"
+            buttonStyle={{
+              backgroundColor: Colors.gifterRed,
+            }}
+          />
+        }
+        {
+            props.item.reservedById !== props.activeUserId &&
+            (
+              !!props.item.reservedById
+              ? <Text style={[styles.itemText, styles.reservedInfo]}>
+                Already reserved by someone else
+              </Text>
+              : <Button
+                onPress={() => {}}
+                title="Reserve item"
+                buttonStyle={{
+                  backgroundColor: Colors.gifterGreen,
+                }}
+              />
+            )
+        }
+      </View>
     </View>
   )
 }
@@ -65,5 +81,16 @@ const styles = StyleSheet.create({
   },
   itemTextLabel: {
     color: Colors.gifterBlue,
-  }
+  },
+  reservedInfo: {
+    color: Colors.gifterRed,
+    height: 40,
+  },
+  buttonPosition: {
+    flex: 0.6,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+  },
 });
