@@ -15,10 +15,6 @@ function MyListsScreen(props) {
       : setActiveListId(null);
   }
 
-  // useEffect = () => {(
-  //
-  // ), []}
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -33,6 +29,7 @@ function MyListsScreen(props) {
                 list={list}
                 setActiveListId={handleSetActiveListId}
                 activeListId={activeListId}
+                addElement={props.addElementToList}
               />
             )
             : <Text style={styles.emptyListText}>

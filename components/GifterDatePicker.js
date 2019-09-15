@@ -10,6 +10,7 @@ function GifterDatePicker(props, ref) {
 
   useImperativeHandle(ref, () => ({
     getValue: () => dateValue,
+    clear: () => clear(),
   }));
 
   setDate = (newDate) => {

@@ -50,6 +50,7 @@ function AddListScreen(props) {
         <GifterInput
           ref={listNameRef}
           label="list name"
+          defaultValue="New List"
         />
       </View>
       <View style={styles.datePickerContainer}>
@@ -62,6 +63,7 @@ function AddListScreen(props) {
         <GifterInput
           ref={listDescriptionRef}
           label="description"
+          defaultValue="New List description"
         />
       </View>
       <View style={styles.buttonPosition}>

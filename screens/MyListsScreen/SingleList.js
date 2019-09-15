@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import Colors from '../../constants/Colors';
 import SingleItem from './SingleItem';
@@ -27,7 +28,7 @@ export default function SingleList(props) {
             {props.list.get('name')}
           </Text>
           <Text style={[styles.listText, styles.listDate]}>
-            {props.list.get('dueDate')}
+            {moment(props.list.get('dueDate')).format('DD.MM.YYYY')}
           </Text>
         </View>
         <View style={styles.listElementDescription}>
@@ -45,7 +46,10 @@ export default function SingleList(props) {
       {
         props.list.get('isActive') &&
         props.activeListId === props.list.get('id') &&
-        <AddItem/>
+        <AddItem
+          addElement={props.addElement}
+          listId={props.list.get('id')}
+        />
       }
     </View>
   )
