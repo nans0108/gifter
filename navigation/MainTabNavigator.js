@@ -8,7 +8,7 @@ import HomeScreen from '../screens/HomeScreen';
 import MyListsScreen from '../screens/MyListsScreen/MyListsScreen';
 import AddListScreen from '../screens/AddListScreen';
 import FriendsListScreen from '../screens/FriendsListScreen/FriendsListScreen';
-import ChooseGiftScreen from '../screens/ChooseGiftScreen';
+import ChooseGiftScreen from '../screens/ChooseGiftScreen/ChooseGiftScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -87,10 +87,9 @@ ChooseGiftStack.navigationOptions = {
 ChooseGiftStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
-  FriendsStack,
   MyListsStack,
   AddListStack,
-
+  FriendsStack,
   ChooseGiftStack,
 });
 

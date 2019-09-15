@@ -14,7 +14,7 @@ export default function App(props) {
   YellowBox.ignoreWarnings(['Remote debugger']);
 
   const [isLoadingComplete, setLoadingComplete] = useState(false);
-  const [isAuthorized, setIsAuthorized] = useState(true);
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
