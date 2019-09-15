@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import Colors from '../constants/Colors';
 import { GifterInput, GifterDatePicker } from '../components';
 import { Button } from 'react-native-elements';
+import { addList } from '../actions';
 
-export default function AddListScreen() {
+function AddListScreen() {
+  addList = () => {
+    this.props.addList({
+      name: 'test',
+      description: 'test',
+      dueDate: '12.12.2019',
+    })
+  }
+  console.log('listReducer', this.props.lists);
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -27,7 +38,7 @@ export default function AddListScreen() {
       </View>
       <View style={styles.buttonPosition}>
         <Button
-          onPress={() => {}}
+          onPress={addList}
           title="Save"
           buttonStyle={{
             backgroundColor: Colors.gifterBlue,
@@ -42,6 +53,17 @@ AddListScreen.navigationOptions = {
   title: 'Add List',
   headerTintColor: Colors.gifterBlue
 };
+
+const mapStateToProps = (state: Object) => ({
+    lists: state.lists,
+});
+
+const mapDispachToProps = (dispatch) => ({
+  addList: list => dispatch(addList(list)),
+});
+
+
+export default connect(mapStateToProps, mapDispachToProps)(AddListScreen);
 
 const styles = StyleSheet.create({
   container: {
