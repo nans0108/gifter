@@ -89,7 +89,6 @@ const mapDispachToProps = (dispatch) => bindActionCreators({
   ...listActions,
 }, dispatch);
 
-
 export default connect(mapStateToProps, mapDispachToProps)(AddListScreen);
 
 const styles = StyleSheet.create({

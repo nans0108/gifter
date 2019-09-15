@@ -8,13 +8,13 @@ export default function SingleItem(props) {
     <View style={styles.itemElement}>
       <View style={styles.header}>
         <Text style={[styles.itemText, styles.itemName]}>
-          Name: {props.item.name}
+          Name: {props.item.get('name')}
         </Text>
         {
           props.isPossibleToDeleteItem &&
           <TouchableOpacity
             style={styles.deleteItem}
-            onPress={() => console.log('delete item with id', props.item.id)}
+            onPress={() => console.log('delete item with id', props.item.get('id'))}
           >
             <Ionicons
               name={Platform.OS === 'ios' ? 'ios-trash' : 'md-trash'}
@@ -25,10 +25,10 @@ export default function SingleItem(props) {
         }
       </View>
       <Text style={styles.itemText}>
-        <Text style={styles.itemTextLabel}>Description: </Text>{props.item.description}
+        <Text style={styles.itemTextLabel}>Description: </Text>{props.item.get('description')}
       </Text>
       <Text style={styles.itemText}>
-        <Text style={styles.itemTextLabel}>Place to buy: </Text>{props.item.placeToBuy}
+        <Text style={styles.itemTextLabel}>Place to buy: </Text>{props.item.get('placeToBuy')}
       </Text>
     </View>
   )

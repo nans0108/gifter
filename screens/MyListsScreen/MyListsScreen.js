@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import Colors from '../../constants/Colors';
 import SingleList from './SingleList';
+import * as listActions from '../../actions/listActions';
 
-export default function MyListsScreen() {
+function MyListsScreen(props) {
   const [activeListId, setActiveListId] = useState(null);
 
   handleSetActiveListId = (listId) => {
@@ -12,6 +15,10 @@ export default function MyListsScreen() {
       : setActiveListId(null);
   }
 
+  // useEffect = () => {(
+  //
+  // ), []}
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -19,14 +26,18 @@ export default function MyListsScreen() {
       </View>
       <ScrollView style={styles.scrollContainer}>
         {
-          myLists.map((list, index) =>
-            <SingleList
-              key={index}
-              list={list}
-              setActiveListId={handleSetActiveListId}
-              activeListId={activeListId}
-            />
-          )
+          props.lists.size !== 0
+            ? props.lists.map((list, index) =>
+              <SingleList
+                key={index}
+                list={list}
+                setActiveListId={handleSetActiveListId}
+                activeListId={activeListId}
+              />
+            )
+            : <Text style={styles.emptyListText}>
+              You don't have any list yet!
+            </Text>
         }
       </ScrollView>
     </View>
@@ -37,6 +48,17 @@ MyListsScreen.navigationOptions = {
   title: 'My Lists',
   headerTintColor: Colors.gifterBlue
 };
+
+const mapStateToProps = (state: Object) => ({
+    lists: state.lists,
+});
+
+const mapDispachToProps = (dispatch) => bindActionCreators({
+  ...listActions,
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispachToProps)(MyListsScreen);
+
 
 const styles = StyleSheet.create({
   container: {
@@ -58,6 +80,12 @@ const styles = StyleSheet.create({
     fontFamily: 'vinc-hand',
     justifyContent: 'flex-end',
   },
+  emptyListText: {
+    fontSize: 20,
+    marginTop: 20,
+    color: Colors.gifterLightGrey,
+    alignSelf: 'center',
+  }
 });
 
 const myLists = [

@@ -13,7 +13,7 @@ const listReducer = (state: Immutable.List = Immutable.List(), action) => {
           description: action.response.description,
           dueDate: action.response.dueDate,
           isActive: true,
-          items: [],
+          items: Immutable.List(),
         })
       );
     default:

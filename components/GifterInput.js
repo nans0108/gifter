@@ -8,8 +8,8 @@ class GifterInput extends PureComponent {
   constructor(props: Object) {
     super(props);
     this.state = {
-      isFocused: !!this.props.deafultValue ? true : false,
-      textInputValue: !!this.props.deafultValue ? this.props.deafultValue : '',
+      isFocused: !!this.props.defaultValue ? true : false,
+      textInputValue: !!this.props.defaultValue ? this.props.defaultValue : '',
     };
   }
 

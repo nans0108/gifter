@@ -52,6 +52,7 @@ function LoginScreen(props) {
           keyboardType="email-address"
           iconName="envelope"
           iconSize={20}
+          defaultValue="jan.kowalski@gmail.com"
         />
       </View>
       <View style={styles.inputPosition}>
