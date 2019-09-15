@@ -5,17 +5,18 @@ import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import Colors from '../constants/Colors';
 import { GifterInput, GifterDatePicker } from '../components';
 import { Button } from 'react-native-elements';
-import { addList } from '../actions';
+import * as listActions from '../actions/listActions';
 
-function AddListScreen() {
+
+function AddListScreen(props) {
   addList = () => {
-    this.props.addList({
+    props.addList({
       name: 'test',
       description: 'test',
       dueDate: '12.12.2019',
     })
   }
-  console.log('listReducer', this.props.lists);
+  console.log('listReducer', props.lists);
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -58,9 +59,9 @@ const mapStateToProps = (state: Object) => ({
     lists: state.lists,
 });
 
-const mapDispachToProps = (dispatch) => ({
-  addList: list => dispatch(addList(list)),
-});
+const mapDispachToProps = (dispatch) => bindActionCreators({
+  ...listActions,
+}, dispatch);
 
 
 export default connect(mapStateToProps, mapDispachToProps)(AddListScreen);
