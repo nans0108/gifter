@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, createRef } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
@@ -9,12 +9,17 @@ import * as listActions from '../actions/listActions';
 
 
 function AddListScreen(props) {
+  const listNameRef = createRef(null);
+  const listDueDateRef = createRef(null);
+  const listDescriptionRef = createRef(null);
+
   addList = () => {
     props.addList({
-      name: 'test',
-      description: 'test',
-      dueDate: '12.12.2019',
+      name: listNameRef.current.getValue(),
+      description: listDescriptionRef.current.getValue(),
+      dueDate: listDueDateRef.current.getValue(),
     })
+    .then(() => props.navigation.navigate('MyLists'))
   }
 
   return (
@@ -24,16 +29,19 @@ function AddListScreen(props) {
       </View>
       <View style={styles.inputPosition}>
         <GifterInput
+          ref={listNameRef}
           label="list name"
         />
       </View>
       <View style={styles.datePickerContainer}>
         <GifterDatePicker
+          ref={listDueDateRef}
           label="due date"
         />
       </View>
       <View style={styles.inputPosition}>
         <GifterInput
+          ref={listDescriptionRef}
           label="description"
         />
       </View>
