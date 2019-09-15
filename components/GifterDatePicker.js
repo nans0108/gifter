@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import DatePicker from 'react-native-datepicker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Colors from '../constants/Colors';
 
-export default function GifterDatePicker(props) {
+function GifterDatePicker(props, ref) {
   const [dateValue, setDateValue] = useState(new Date());
+
+  useImperativeHandle(ref, () => ({
+    getValue: () => dateValue,
+  }));
 
   setDate = (newDate) => {
     setDateValue(newDate);
@@ -71,6 +75,8 @@ export default function GifterDatePicker(props) {
     </View>
   );
 }
+
+export default forwardRef(GifterDatePicker);
 
 const styles = StyleSheet.create({
   container: {

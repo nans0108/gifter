@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, createRef } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
@@ -7,14 +7,31 @@ import { GifterInput, GifterDatePicker } from '../components';
 import { Button } from 'react-native-elements';
 import * as listActions from '../actions/listActions';
 
-
 function AddListScreen(props) {
+  const [isErrorVisible, setIsErrorVisible] = useState(false);
+
+  const listNameRef = createRef(null);
+  const listDueDateRef = createRef(null);
+  const listDescriptionRef = createRef(null);
+
   addList = () => {
-    props.addList({
-      name: 'test',
-      description: 'test',
-      dueDate: '12.12.2019',
-    })
+    setIsErrorVisible(false);
+    !!listNameRef.current.getValue()
+      ? props.addList({
+        name: listNameRef.current.getValue(),
+        description: listDescriptionRef.current.getValue(),
+        dueDate: listDueDateRef.current.getValue(),
+      })
+      .then(() => {
+        clearInputs();
+        props.navigation.navigate('MyLists');
+      })
+      : setIsErrorVisible(true);
+  }
+
+  clearInputs = () => {
+    listNameRef.current.clear();
+    listDescriptionRef.current.clear();
   }
 
   return (
@@ -22,18 +39,27 @@ function AddListScreen(props) {
       <View style={styles.header}>
         <Text style={styles.text}>Add new gifts list</Text>
       </View>
+      {
+        isErrorVisible &&
+        <View style={styles.errorMsg}>
+          <Text style={styles.errorText}>List name cannot be empty to save!</Text>
+        </View>
+      }
       <View style={styles.inputPosition}>
         <GifterInput
+          ref={listNameRef}
           label="list name"
         />
       </View>
       <View style={styles.datePickerContainer}>
         <GifterDatePicker
+          ref={listDueDateRef}
           label="due date"
         />
       </View>
       <View style={styles.inputPosition}>
         <GifterInput
+          ref={listDescriptionRef}
           label="description"
         />
       </View>
@@ -94,5 +120,16 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 30,
     justifyContent: 'flex-end',
+  },
+  errorMsg: {
+    marginTop: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  errorText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: Colors.gifterRed,
   },
 });
