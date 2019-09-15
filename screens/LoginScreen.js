@@ -21,8 +21,14 @@ function LoginScreen(props) {
     .then(() => {
       props.setIsAuthorized(true);
       props.setIsLoginPageActive(false);
-    })
+      clearInputs();
+    });
     .catch(() => setIsErrorVisible(true));
+  }
+
+  clearInputs = () => {
+    emailRef.current.clear();
+    passwordRef.current.clear();
   }
 
   return (
