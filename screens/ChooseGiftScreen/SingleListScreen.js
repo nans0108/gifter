@@ -23,13 +23,13 @@ export default function SingleListScreen(props) {
                 key={index}
                 item={item}
                 activeUserId={props.activeUserId}
+                activeListId={props.activeListId}
                 changeReservedByIdValue={props.changeReservedByIdValue}
               />
             )
             : <Text style={styles.emptyListText}>
               This list is empty!
             </Text>
-
         }
       </ScrollView>
       <View style={styles.buttonPosition}>

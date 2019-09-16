@@ -39,12 +39,15 @@ function ChooseGiftScreen(props) {
     return props.lists.filter(list => list.get('ownerId') !== props.authorization.get('id'))
   }
 
+  console.log('getActiveList()', getActiveList() && getActiveList().toJS());
+
   return (
     <View style={styles.container}>
       {
         activeListId
           ? <SingleListScreen
             list={getActiveList()}
+            activeListId={activeListId}
             owner={getOwnerOfActiveList()}
             setActiveListId={handleSetActiveListId}
             activeUserId={props.authorization.get('id')}

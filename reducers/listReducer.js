@@ -42,7 +42,9 @@ const listReducer = (state: Immutable.List = initState, action) => {
       return state.deleteIn([listIndex, 'contributors', contributorIndex]);
     case 'CHANGE_RESERVED_BY_VALUE':
       listIndex = state.findIndex((list) => list.get('id') === action.listId);
+      console.log('listIndex', listIndex);
       elementIndex = state.getIn([listIndex, 'items']).findIndex((element) => element.get('id') === action.elementId);
+      console.log('elementIndex', elementIndex);
       return state.setIn([listIndex, 'items', elementIndex, 'reservedById'], action.response);
     default:
       return state;

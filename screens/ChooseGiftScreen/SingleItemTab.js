@@ -6,11 +6,11 @@ import { Button } from 'react-native-elements';
 
 export default function SingleItemTab(props) {
   changeReservedByIdValue1 = () => {
-    props.changeReservedByIdValue(null)
+    props.changeReservedByIdValue(null, props.item.get('id'), props.activeListId)
   }
 
   changeReservedByIdValue2 = () => {
-    props.changeReservedByIdValue(props.activeUserId)
+    props.changeReservedByIdValue(props.activeUserId, props.item.get('id'), props.activeListId)
   }
 
   return (
@@ -30,7 +30,7 @@ export default function SingleItemTab(props) {
         {
           props.item.get('reservedById') === props.activeUserId &&
           <Button
-            onPress={changeReservedByIdValue}
+            onPress={changeReservedByIdValue1}
             title="Cancel reservation"
             buttonStyle={{
               backgroundColor: Colors.gifterRed,
