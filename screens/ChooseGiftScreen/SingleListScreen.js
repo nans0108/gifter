@@ -17,8 +17,8 @@ export default function SingleListScreen(props) {
           owner={props.owner}
         />
         {
-          props.list.items.length > 0
-            ? props.list.items.map((item, index) =>
+          props.list.get('items').size > 0
+            ? props.list.get('items').map((item, index) =>
               <SingleItemTab
                 key={index}
                 item={item}

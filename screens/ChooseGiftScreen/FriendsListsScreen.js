@@ -11,11 +11,12 @@ export default function FriendsListsScreen(props) {
       </View>
       <ScrollView style={styles.scrollContainer}>
         {
+          props.friends.size > 0 &&
           props.lists.map((list, index) =>
             <SingleListTab
               key={index}
               list={list}
-              owner={props.friends.find(friend => friend.id === list.ownerId)}
+              owner={props.friends.find(friend => friend.get('id') === list.get('ownerId'))}
               setActiveListId={props.setActiveListId}
             />
           )

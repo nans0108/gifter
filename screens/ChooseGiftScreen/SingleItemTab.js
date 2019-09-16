@@ -9,18 +9,18 @@ export default function SingleItemTab(props) {
     <View style={styles.itemElement}>
       <View style={styles.header}>
         <Text style={[styles.itemText, styles.itemName]}>
-          Name: {props.item.name}
+          Name: {props.item.get('name')}
         </Text>
       </View>
       <Text style={styles.itemText}>
-        <Text style={styles.itemTextLabel}>Description: </Text>{props.item.description}
+        <Text style={styles.itemTextLabel}>Description: </Text>{props.item.get('description')}
       </Text>
       <Text style={styles.itemText}>
-        <Text style={styles.itemTextLabel}>Place to buy: </Text>{props.item.placeToBuy}
+        <Text style={styles.itemTextLabel}>Place to buy: </Text>{props.item.get('placeToBuy')}
       </Text>
       <View style={styles.buttonPosition}>
         {
-          props.item.reservedById === props.activeUserId &&
+          props.item.get('reservedById') === props.activeUserId &&
           <Button
             onPress={() => {}}
             title="Cancel reservation"
@@ -30,9 +30,9 @@ export default function SingleItemTab(props) {
           />
         }
         {
-            props.item.reservedById !== props.activeUserId &&
+            props.item.get('reservedById') !== props.activeUserId &&
             (
-              !!props.item.reservedById
+              !!props.item.get('reservedById')
               ? <Text style={[styles.itemText, styles.reservedInfo]}>
                 Already reserved by someone else
               </Text>

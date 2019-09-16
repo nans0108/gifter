@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import Colors from '../../constants/Colors';
 
@@ -7,31 +8,31 @@ export default function SingleListTab(props) {
     <View style={styles.container}>
       <TouchableOpacity
         style={[
-          { backgroundColor: props.list.isActive
+          { backgroundColor: props.list.get('isActive')
             ? Colors.gifterBlue
             : Colors.gifterLightGrey
           },
           styles.listElement
         ]}
-        onPress={() => props.setActiveListId && props.setActiveListId(props.list.id)}
+        onPress={() => props.setActiveListId && props.setActiveListId(props.list.get('id'))}
       >
         <View style={styles.listElementHeader}>
           <Text style={[styles.listText, styles.listName]}>
-            {props.list.name}
+            {props.list.get('name')}
           </Text>
           <Text style={[styles.listText, styles.listDate]}>
-            {props.list.dueDate}
+            {moment(props.list.get('dueDate')).format('DD.MM.YYYY')}
           </Text>
         </View>
         <View style={styles.listElementDescription}>
           <Text style={styles.listText}>
-            {props.list.description}
+            {props.list.get('description')}
           </Text>
         </View>
         <View style={styles.line} />
         <View style={styles.listElementOwner}>
           <Text style={styles.listText}>
-            {props.owner.name} {props.owner.surname}
+            {props.owner.get('name')} {props.owner.get('surname')}
           </Text>
         </View>
       </TouchableOpacity>

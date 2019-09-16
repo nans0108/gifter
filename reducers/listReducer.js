@@ -1,7 +1,8 @@
 import Immutable from 'immutable'
 import uuid from 'short-uuid';
+import moment from 'moment';
 
-const listReducer = (state: Immutable.List = Immutable.List(), action) => {
+const listReducer = (state: Immutable.List = initState, action) => {
   let listIndex: number;
 
   switch(action.type) {
@@ -25,6 +26,7 @@ const listReducer = (state: Immutable.List = Immutable.List(), action) => {
         name: action.response.name,
         description: action.response.description,
         placeToBuy: action.response.placeToBuy,
+        reservedById: null,
       })));
     case 'REMOVE_ELEMENT':
       listIndex = state.findIndex((list) => list.get('id') === action.listId);
@@ -43,3 +45,178 @@ const listReducer = (state: Immutable.List = Immutable.List(), action) => {
 }
 
 export default listReducer;
+
+const initState = Immutable.List([
+  Immutable.Map({
+    id: uuid().new(),
+    ownerId: 1,
+    name: 'Example list for test application',
+    description: 'Example list description',
+    dueDate: moment('12.05.2020', 'DD.MM.YYYY'),
+    isActive: true,
+    items: new Immutable.List([
+      Immutable.Map({
+        id: uuid().new(),
+        name: 'Element1 name',
+        description: 'Element1 description',
+        placeToBuy: 'Element1 place to buy',
+        reservedById: null,
+      }),
+      Immutable.Map({
+        id: uuid().new(),
+        name: 'Element2 name',
+        description: 'Element2 description',
+        placeToBuy: 'Element2 place to buy',
+        reservedById: null,
+      })
+    ]),
+    contributors: new Immutable.List([2, 3, 4]),
+  }),
+  Immutable.Map({
+    id: uuid().new(),
+    ownerId: 1,
+    name: 'Example list for test application',
+    description: 'Example list description',
+    dueDate: moment('12.05.2020', 'DD.MM.YYYY'),
+    isActive: true,
+    items: new Immutable.List([
+      Immutable.Map({
+        id: uuid().new(),
+        name: 'Element name',
+        description: 'Element description',
+        placeToBuy: 'Element place to buy',
+        reservedById: null,
+      })
+    ]),
+    contributors: new Immutable.List([2, 3, 4]),
+  }),
+  Immutable.Map({
+    id: uuid().new(),
+    ownerId: 2,
+    name: 'Example list for test application',
+    description: 'Example list description',
+    dueDate: moment('12.05.2020', 'DD.MM.YYYY'),
+    isActive: true,
+    items: new Immutable.List([
+      Immutable.Map({
+        id: uuid().new(),
+        name: 'Element1 name',
+        description: 'Element1 description',
+        placeToBuy: 'Element1 place to buy',
+        reservedById: null,
+      }),
+      Immutable.Map({
+        id: uuid().new(),
+        name: 'Element2 name',
+        description: 'Element2 description',
+        placeToBuy: 'Element2 place to buy',
+        reservedById: null,
+      })
+    ]),
+    contributors: new Immutable.List([1, 3, 4]),
+  }),
+  Immutable.Map({
+    id: uuid().new(),
+    ownerId: 2,
+    name: 'Example list for test application',
+    description: 'Example list description',
+    dueDate: moment('12.05.2020', 'DD.MM.YYYY'),
+    isActive: true,
+    items: new Immutable.List([
+      Immutable.Map({
+        id: uuid().new(),
+        name: 'Element name',
+        description: 'Element description',
+        placeToBuy: 'Element place to buy',
+        reservedById: null,
+      })
+    ]),
+    contributors: new Immutable.List([1, 3, 4]),
+  }),
+  Immutable.Map({
+    id: uuid().new(),
+    ownerId: 3,
+    name: 'Example list for test application',
+    description: 'Example list description',
+    dueDate: moment('12.05.2020', 'DD.MM.YYYY'),
+    isActive: true,
+    items: new Immutable.List([
+      Immutable.Map({
+        id: uuid().new(),
+        name: 'Element1 name',
+        description: 'Element1 description',
+        placeToBuy: 'Element1 place to buy',
+        reservedById: null,
+      }),
+      Immutable.Map({
+        id: uuid().new(),
+        name: 'Element2 name',
+        description: 'Element2 description',
+        placeToBuy: 'Element2 place to buy',
+        reservedById: null,
+      })
+    ]),
+    contributors: new Immutable.List([1, 2, 4]),
+  }),
+  Immutable.Map({
+    id: uuid().new(),
+    ownerId: 3,
+    name: 'Example list for test application',
+    description: 'Example list description',
+    dueDate: moment('12.05.2020', 'DD.MM.YYYY'),
+    isActive: true,
+    items: new Immutable.List([
+      Immutable.Map({
+        id: uuid().new(),
+        name: 'Element name',
+        description: 'Element description',
+        placeToBuy: 'Element place to buy',
+        reservedById: null,
+      })
+    ]),
+    contributors: new Immutable.List([1, 2, 4]),
+  }),
+  Immutable.Map({
+    id: uuid().new(),
+    ownerId: 4,
+    name: 'Example list for test application',
+    description: 'Example list description',
+    dueDate: moment('12.05.2020', 'DD.MM.YYYY'),
+    isActive: true,
+    items: new Immutable.List([
+      Immutable.Map({
+        id: uuid().new(),
+        name: 'Element1 name',
+        description: 'Element1 description',
+        placeToBuy: 'Element1 place to buy',
+        reservedById: null,
+      }),
+      Immutable.Map({
+        id: uuid().new(),
+        name: 'Element2 name',
+        description: 'Element2 description',
+        placeToBuy: 'Element2 place to buy',
+        reservedById: null,
+      })
+    ]),
+    contributors: new Immutable.List([1, 2, 3]),
+  }),
+  Immutable.Map({
+    id: uuid().new(),
+    ownerId: 4,
+    name: 'Example list for test application',
+    description: 'Example list description',
+    dueDate: moment('12.05.2020', 'DD.MM.YYYY'),
+    isActive: true,
+    items: new Immutable.List([
+      Immutable.Map({
+        id: uuid().new(),
+        name: 'Element name',
+        description: 'Element description',
+        placeToBuy: 'Element place to buy',
+        reservedById: null,
+      })
+    ]),
+    contributors: new Immutable.List([1, 2, 3]),
+  }),
+]);
