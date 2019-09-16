@@ -5,24 +5,32 @@ import { Ionicons } from '@expo/vector-icons';
 import { Button } from 'react-native-elements';
 
 export default function SingleItemTab(props) {
+  changeReservedByIdValue1 = () => {
+    props.changeReservedByIdValue(null, props.item.get('id'), props.activeListId)
+  }
+
+  changeReservedByIdValue2 = () => {
+    props.changeReservedByIdValue(props.activeUserId, props.item.get('id'), props.activeListId)
+  }
+
   return (
     <View style={styles.itemElement}>
       <View style={styles.header}>
         <Text style={[styles.itemText, styles.itemName]}>
-          Name: {props.item.name}
+          Name: {props.item.get('name')}
         </Text>
       </View>
       <Text style={styles.itemText}>
-        <Text style={styles.itemTextLabel}>Description: </Text>{props.item.description}
+        <Text style={styles.itemTextLabel}>Description: </Text>{props.item.get('description')}
       </Text>
       <Text style={styles.itemText}>
-        <Text style={styles.itemTextLabel}>Place to buy: </Text>{props.item.placeToBuy}
+        <Text style={styles.itemTextLabel}>Place to buy: </Text>{props.item.get('placeToBuy')}
       </Text>
       <View style={styles.buttonPosition}>
         {
-          props.item.reservedById === props.activeUserId &&
+          props.item.get('reservedById') === props.activeUserId &&
           <Button
-            onPress={() => {}}
+            onPress={changeReservedByIdValue1}
             title="Cancel reservation"
             buttonStyle={{
               backgroundColor: Colors.gifterRed,
@@ -30,14 +38,14 @@ export default function SingleItemTab(props) {
           />
         }
         {
-            props.item.reservedById !== props.activeUserId &&
+            props.item.get('reservedById') !== props.activeUserId &&
             (
-              !!props.item.reservedById
+              !!props.item.get('reservedById')
               ? <Text style={[styles.itemText, styles.reservedInfo]}>
                 Already reserved by someone else
               </Text>
               : <Button
-                onPress={() => {}}
+                onPress={changeReservedByIdValue2}
                 title="Reserve item"
                 buttonStyle={{
                   backgroundColor: Colors.gifterGreen,

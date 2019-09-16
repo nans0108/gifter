@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { View, Text, StyleSheet } from 'react-native';
 import Colors from '../../constants/Colors';
 import FriendsListsScreen from './FriendsListsScreen';
 import SingleListScreen from './SingleListScreen';
+import * as authorizationActions from '../../actions/authorizationActions';
+import * as friendActions from '../../actions/friendActions';
+import * as listActions from '../../actions/listActions';
 
-export default function ChooseGiftScreen() {
+function ChooseGiftScreen(props) {
   const [activeListId, setActiveListId] = useState(null);
+
+  useEffect(() => {
+    props.getFriends();
+  }, []);
 
   handleSetActiveListId = (listId) => {
     activeListId !== listId
@@ -15,16 +24,22 @@ export default function ChooseGiftScreen() {
 
   getActiveList = () => {
     return (
-      lists.find(list => list.id === activeListId)
+      props.lists.find(list => list.get('id') === activeListId)
     )
   }
 
   getOwnerOfActiveList = () => {
-    const ownerId = getActiveList().ownerId;
+    const ownerId = getActiveList().get('ownerId');
     return (
-      friends.find(friend => friend.id === ownerId)
+      props.friends.find(friend => friend.get('id') === ownerId)
     )
   }
+
+  getLists = () => {
+    return props.lists.filter(list => list.get('ownerId') !== props.authorization.get('id'))
+  }
+
+  console.log('getActiveList()', getActiveList() && getActiveList().toJS());
 
   return (
     <View style={styles.container}>
@@ -32,13 +47,15 @@ export default function ChooseGiftScreen() {
         activeListId
           ? <SingleListScreen
             list={getActiveList()}
+            activeListId={activeListId}
             owner={getOwnerOfActiveList()}
             setActiveListId={handleSetActiveListId}
-            activeUserId={1}
+            activeUserId={props.authorization.get('id')}
+            changeReservedByIdValue={props.changeReservedByIdValue}
           />
           : <FriendsListsScreen
-            lists={lists}
-            friends={friends}
+            lists={getLists()}
+            friends={props.friends}
             setActiveListId={handleSetActiveListId}
           />
       }
@@ -50,6 +67,20 @@ ChooseGiftScreen.navigationOptions = {
   title: 'Choose Gift',
   headerTintColor: Colors.gifterBlue
 };
+
+const mapStateToProps = (state: Object) => ({
+    authorization: state.authorization,
+    lists: state.lists,
+    friends: state.friends,
+});
+
+const mapDispachToProps = (dispatch) => bindActionCreators({
+  ...authorizationActions,
+  ...friendActions,
+  ...listActions,
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispachToProps)(ChooseGiftScreen);
 
 const styles = StyleSheet.create({
   container: {
