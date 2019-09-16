@@ -22,7 +22,8 @@ export default function SingleListScreen(props) {
               <SingleItemTab
                 key={index}
                 item={item}
-                activeUserId={1}
+                activeUserId={props.activeUserId}
+                changeReservedByIdValue={props.changeReservedByIdValue}
               />
             )
             : <Text style={styles.emptyListText}>

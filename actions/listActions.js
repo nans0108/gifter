@@ -46,6 +46,22 @@ export function removeElementFromListRequest(elementId: number, listId: number):
   };
 }
 
+
+
+export function changeReservedByIdValue(userId?: numer): Function {
+  return (dispatch) => new Promise((resolve) => {
+    dispatch(changeReservedByIdValueRequest(userId));
+    resolve();
+  });
+}
+
+export function changeReservedByIdValueRequest(userId?: number): Object {
+  return {
+    type: 'CHANGE_RESERVED_BY_VALUE',
+    response: userId,
+  };
+}
+
 // --- contributors --- //
 
 export function addContibutorToList(contributorId: number, listId: number): Function {

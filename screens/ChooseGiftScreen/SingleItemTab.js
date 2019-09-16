@@ -5,6 +5,14 @@ import { Ionicons } from '@expo/vector-icons';
 import { Button } from 'react-native-elements';
 
 export default function SingleItemTab(props) {
+  changeReservedByIdValue1 = () => {
+    props.changeReservedByIdValue(null)
+  }
+
+  changeReservedByIdValue2 = () => {
+    props.changeReservedByIdValue(props.activeUserId)
+  }
+
   return (
     <View style={styles.itemElement}>
       <View style={styles.header}>
@@ -22,7 +30,7 @@ export default function SingleItemTab(props) {
         {
           props.item.get('reservedById') === props.activeUserId &&
           <Button
-            onPress={() => {}}
+            onPress={changeReservedByIdValue}
             title="Cancel reservation"
             buttonStyle={{
               backgroundColor: Colors.gifterRed,
@@ -37,7 +45,7 @@ export default function SingleItemTab(props) {
                 Already reserved by someone else
               </Text>
               : <Button
-                onPress={() => {}}
+                onPress={changeReservedByIdValue2}
                 title="Reserve item"
                 buttonStyle={{
                   backgroundColor: Colors.gifterGreen,

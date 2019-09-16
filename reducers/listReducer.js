@@ -4,6 +4,7 @@ import moment from 'moment';
 
 const listReducer = (state: Immutable.List = initState, action) => {
   let listIndex: number;
+  let elementIndex: number;
 
   switch(action.type) {
     case 'ADD_LIST':
@@ -30,7 +31,7 @@ const listReducer = (state: Immutable.List = initState, action) => {
       })));
     case 'REMOVE_ELEMENT':
       listIndex = state.findIndex((list) => list.get('id') === action.listId);
-      const elementIndex: number = state.getIn([listIndex, 'items']).findIndex((element) => element.get('id') === action.elementId);
+       elementIndex = state.getIn([listIndex, 'items']).findIndex((element) => element.get('id') === action.elementId);
       return state.deleteIn([listIndex, 'items', elementIndex]);
     case 'ADD_CONTRIBUTOR':
        listIndex = state.findIndex((list) => list.get('id') === action.listId);
@@ -39,6 +40,10 @@ const listReducer = (state: Immutable.List = initState, action) => {
       listIndex = state.findIndex((list) => list.get('id') === action.listId);
       const contributorIndex: number = state.getIn([listIndex, 'contributors']).findIndex((conributor) => conributor === action.contributorId);
       return state.deleteIn([listIndex, 'contributors', contributorIndex]);
+    case 'CHANGE_RESERVED_BY_VALUE':
+      listIndex = state.findIndex((list) => list.get('id') === action.listId);
+      elementIndex = state.getIn([listIndex, 'items']).findIndex((element) => element.get('id') === action.elementId);
+      return state.setIn([listIndex, 'items', elementIndex, 'reservedById'], action.response);
     default:
       return state;
   }

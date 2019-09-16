@@ -48,6 +48,7 @@ function ChooseGiftScreen(props) {
             owner={getOwnerOfActiveList()}
             setActiveListId={handleSetActiveListId}
             activeUserId={props.authorization.get('id')}
+            changeReservedByIdValue={props.changeReservedByIdValue}
           />
           : <FriendsListsScreen
             lists={getLists()}
