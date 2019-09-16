@@ -92,7 +92,6 @@ const mapDispachToProps = (dispatch) => bindActionCreators({
   ...authorizationActions,
 }, dispatch);
 
-
 export default connect(mapStateToProps, mapDispachToProps)(LoginScreen);
 
 const styles = StyleSheet.create({

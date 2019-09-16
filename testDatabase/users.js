@@ -4,6 +4,7 @@ export default users = [
     email: 'marzena.kania@gmail.com',
     name: 'Marzena',
     surname: 'Kania',
+    // invitedToList: [2, 5],
   },
   {
     id: 2,
