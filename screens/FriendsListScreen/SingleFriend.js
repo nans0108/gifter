@@ -5,7 +5,7 @@ import SingleList from './SingleList';
 
 export default function SingleFriend(props) {
   getListElementColor = () => {
-    return props.activeFriendId === props.friend.id
+    return props.activeFriendId === props.friend.get('id')
       ? Colors.gifterPink
       : Colors.gifterBlue
   }
@@ -17,23 +17,30 @@ export default function SingleFriend(props) {
           { backgroundColor: getListElementColor() },
           styles.listElement
         ]}
-        onPress={() => props.setActiveFriendId(props.friend.id)}
+        onPress={() => props.setActiveFriendId(props.friend.get('id'))}
       >
         <View style={styles.listElementHeader}>
           <Text style={[styles.listText, styles.listName]}>
-            {props.friend.name} {props.friend.surname}
+            {props.friend.get('name')} {props.friend.get('surname')}
           </Text>
         </View>
         <View style={styles.listElementDescription}>
           <Text style={styles.listText}>
-            {props.friend.email}
+            {props.friend.get('email')}
           </Text>
         </View>
       </TouchableOpacity>
       {
-        props.activeFriendId === props.friend.id &&
-        myLists.map((list, index) =>
-          <SingleList key={index} list={list} invitedToList={props.friend.invitedToList}/>
+        props.activeFriendId === props.friend.get('id') &&
+        props.lists.size > 0 &&
+        props.lists.map((list, index) =>
+          <SingleList
+            key={index}
+            list={list}
+            friendId={props.friend.get('id')}
+            addContibutor={props.addContibutor}
+            removeContibutor={props.removeContibutor}
+          />
         )
       }
     </View>
@@ -79,46 +86,3 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
 });
-
-const myLists = [
-  {
-    id: 1,
-    ownerId: 3,
-    name: 'First name',
-    description: 'First description',
-    dueDate: '12.09.2019',
-    isActive: true,
-  },
-  {
-    id: 2,
-    ownerId: 3,
-    name: 'Second name',
-    description: 'Second description, this element should have longer description to chech if its display in proper way',
-    dueDate: '21.11.2019',
-    isActive: true,
-  },
-  {
-    id: 3,
-    ownerId: 3,
-    name: 'Third name',
-    description: 'Third description',
-    dueDate: '02.02.2018',
-    isActive: false,
-  },
-  {
-    id: 4,
-    ownerId: 3,
-    name: 'Fourth name',
-    description: '',
-    dueDate: '12.12.2019',
-    isActive: true,
-  },
-  {
-    id: 5,
-    ownerId: 3,
-    name: 'Fifth name',
-    description: 'Fifth description',
-    dueDate: '02.07.2019',
-    isActive: false,
-  }
-];

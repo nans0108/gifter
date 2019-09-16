@@ -4,10 +4,12 @@ import thunk from 'redux-thunk';
 
 import listReducer from './reducers/listReducer';
 import authorizationReducer from './reducers/authorizationReducer';
+import friendReducer from './reducers/friendReducer';
 
 const rootReducer = combineReducers({
   lists: listReducer,
   authorization: authorizationReducer,
+  friends: friendReducer,
 });
 
 const configureStore = () => {

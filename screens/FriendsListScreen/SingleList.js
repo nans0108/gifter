@@ -1,38 +1,45 @@
 import React from 'react';
+import moment from 'moment';
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import Colors from '../../constants/Colors';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function SingleList(props) {
+  decideOnContributor = () => {
+    props.list.get('contributors').includes(props.friendId)
+      ? props.removeContibutor(props.friendId, props.list.get('id'))
+      : props.addContibutor(props.friendId, props.list.get('id'));
+  }
+
   return (
     <View style={[
-      { backgroundColor: props.list.isActive ? Colors.gifterWhite : '#fefefe' },
+      { backgroundColor: props.list.get('isActive') ? Colors.gifterWhite : '#fefefe' },
       styles.itemElement
     ]}>
       <View style={styles.header}>
         <View style={styles.listInfo}>
           <Text style={styles.itemText}>
-            <Text style={styles.itemTextLabel}>Name: </Text>{props.list.name}
+            <Text style={styles.itemTextLabel}>Name: </Text>{props.list.get('name')}
           </Text>
           <Text style={styles.itemText}>
-            <Text style={styles.itemTextLabel}>Due date: </Text>{props.list.dueDate}
+            <Text style={styles.itemTextLabel}>Due date: </Text>{moment(props.list.get('dueDate')).format('DD.MM.YYYY')}
           </Text>
         </View>
         {
-          props.list.isActive &&
+          props.list.get('isActive') &&
           <TouchableOpacity
             style={styles.iconSection}
-            onPress={() => console.log('delete item with id', props.list.id)}
+            onPress={decideOnContributor}
           >
             <Ionicons
               name={
-                props.invitedToList.includes(props.list.id)
+                props.list.get('contributors').includes(props.friendId)
                   ? Platform.OS === 'ios' ? 'ios-remove-circle' : 'md-remove-circle'
                   : Platform.OS === 'ios' ? 'ios-add-circle' : 'md-add-circle'
               }
               size={30}
               color={
-                props.invitedToList.includes(props.list.id)
+                props.list.get('contributors').includes(props.friendId)
                   ? Colors.gifterRed
                   : Colors.gifterGreen
               }
@@ -41,7 +48,7 @@ export default function SingleList(props) {
         }
       </View>
       <Text style={styles.itemText}>
-        <Text style={styles.itemTextLabel}>Description: </Text>{props.list.description}
+        <Text style={styles.itemTextLabel}>Description: </Text>{props.list.get('description')}
       </Text>
     </View>
   )

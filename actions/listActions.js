@@ -14,6 +14,8 @@ export function addListRequest(list: Object, ownerId: number): Object {
   };
 }
 
+// --- elements --- //
+
 export function addElementToList(element: Object, listId: number): Function {
   return (dispatch) => new Promise((resolve) => {
     dispatch(addElementToListRequest(element, listId));
@@ -40,6 +42,38 @@ export function removeElementFromListRequest(elementId: number, listId: number):
   return {
     type: 'REMOVE_ELEMENT',
     elementId: elementId,
+    listId: listId,
+  };
+}
+
+// --- contributors --- //
+
+export function addContibutorToList(contributorId: number, listId: number): Function {
+  return (dispatch) => new Promise((resolve) => {
+    dispatch(addContibutorToListRequest(contributorId, listId));
+    resolve();
+  });
+}
+
+export function addContibutorToListRequest(contributorId: number, listId: number): Object {
+  return {
+    type: 'ADD_CONTRIBUTOR',
+    contributorId: contributorId,
+    listId: listId
+  };
+}
+
+export function removeContibutorFromList(contributorId: number, listId: number): Function {
+  return (dispatch) => new Promise((resolve) => {
+    dispatch(removeContibutorFromListRequest(contributorId, listId));
+    resolve();
+  });
+}
+
+export function removeContibutorFromListRequest(contributorId: number, listId: number): Object {
+  return {
+    type: 'REMOVE_CONTRIBUTOR',
+    contributorId: contributorId,
     listId: listId,
   };
 }

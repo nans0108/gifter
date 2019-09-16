@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import Colors from '../../constants/Colors';
 import SingleFriend from './SingleFriend';
 import InviteFriendScreen from './InviteFriendScreen';
 import { Button } from 'react-native-elements';
+import * as friendActions from '../../actions/friendActions';
+import * as listActions from '../../actions/listActions';
 
-export default function FriendsListScreen() {
+function FriendsListScreen(props) {
   const [activeFriendId, setActiveFriendId] = useState(null);
   const [isInviteFriendScreenActive, setIsActiveInviteFriendView] = useState(false);
+
+  useEffect(() => {
+    props.getFriends();
+  }, []);
 
   handleSetActiveListId = (friendId) => {
     activeFriendId !== friendId
@@ -26,12 +34,16 @@ export default function FriendsListScreen() {
         </View>
         <ScrollView style={styles.scrollContainer}>
         {
-          friendsList.map((friend, index) =>
+          props.friends &&
+          props.friends.map((friend, index) =>
             <SingleFriend
               key={index}
               friend={friend}
+              lists={props.lists}
               setActiveFriendId={handleSetActiveListId}
               activeFriendId={activeFriendId}
+              addContibutor={props.addContibutorToList}
+              removeContibutor={props.removeContibutorFromList}
             />
           )
         }
@@ -53,6 +65,18 @@ FriendsListScreen.navigationOptions = {
   title: 'Friends',
   headerTintColor: Colors.gifterBlue
 };
+
+const mapStateToProps = (state: Object) => ({
+    friends: state.friends,
+    lists: state.lists,
+});
+
+const mapDispachToProps = (dispatch) => bindActionCreators({
+  ...friendActions,
+  ...listActions,
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispachToProps)(FriendsListScreen);
 
 const styles = StyleSheet.create({
   container: {
@@ -79,54 +103,54 @@ const styles = StyleSheet.create({
   },
 });
 
-const friendsList = [
-  {
-    id: 1,
-    name: 'Janek',
-    surname: 'Bliski',
-    email: 'jan@bliski.pl',
-    invitedToList: [2, 5],
-  },
-  {
-    id: 2,
-    name: 'Iwona',
-    surname: 'Malostka',
-    email: 'iwo.malostka.leszpa@kontakt.pl',
-    invitedToList: [3, 4, 5],
-  },
-  {
-    id: 3,
-    name: 'Marek',
-    surname: 'Kostrzak',
-    email: 'maro@karoski.pl',
-    invitedToList: [1, 2, 3, 4, 5],
-  },
-  {
-    id: 4,
-    name: 'Zbigniew',
-    surname: 'Mila',
-    email: 'zbigi@mila.pl',
-    invitedToList: [2, 5],
-  },
-  {
-    id: 5,
-    name: 'Ilona',
-    surname: 'Kawalczykowska',
-    email: 'ilona.kowalczykowska@kontak.pl',
-    invitedToList: [],
-  },
-  {
-    id: 6,
-    name: 'Małgorzta Anna',
-    surname: 'Białoruska Kotrzebaska',
-    email: 'mal@kotrzeba.pl',
-    invitedToList: [1],
-  },
-  {
-    id: 7,
-    name: 'Ania',
-    surname: 'Kowalska',
-    email: 'anna@kowal.pl',
-    invitedToList: [1, 5],
-  },
-];
+// const friendsList = [
+//   {
+//     id: 1,
+//     name: 'Janek',
+//     surname: 'Bliski',
+//     email: 'jan@bliski.pl',
+//     invitedToList: [2, 5],
+//   },
+//   {
+//     id: 2,
+//     name: 'Iwona',
+//     surname: 'Malostka',
+//     email: 'iwo.malostka.leszpa@kontakt.pl',
+//     invitedToList: [3, 4, 5],
+//   },
+//   {
+//     id: 3,
+//     name: 'Marek',
+//     surname: 'Kostrzak',
+//     email: 'maro@karoski.pl',
+//     invitedToList: [1, 2, 3, 4, 5],
+//   },
+//   {
+//     id: 4,
+//     name: 'Zbigniew',
+//     surname: 'Mila',
+//     email: 'zbigi@mila.pl',
+//     invitedToList: [2, 5],
+//   },
+//   {
+//     id: 5,
+//     name: 'Ilona',
+//     surname: 'Kawalczykowska',
+//     email: 'ilona.kowalczykowska@kontak.pl',
+//     invitedToList: [],
+//   },
+//   {
+//     id: 6,
+//     name: 'Małgorzta Anna',
+//     surname: 'Białoruska Kotrzebaska',
+//     email: 'mal@kotrzeba.pl',
+//     invitedToList: [1],
+//   },
+//   {
+//     id: 7,
+//     name: 'Ania',
+//     surname: 'Kowalska',
+//     email: 'anna@kowal.pl',
+//     invitedToList: [1, 5],
+//   },
+// ];
